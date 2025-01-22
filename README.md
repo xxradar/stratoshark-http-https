@@ -31,7 +31,7 @@ Run the following Docker command to start a container and execute a `curl` reque
 docker run -t xxradar/hackon curl -L http://www.radarhack.com
 ```
 This command will pull the `xxradar/hackon` image and run a `curl` command to fetch the specified URL. Note that our Sysdig CLI will only trace the `curl` process. If you need more data, you can modify the filter accordingly. <br>
-The `curl` process inside the container will connect in HTTP (port 80) to the remote server and follow the redirect to the actual webpage using HTTPS (port 443).
+The `curl` process inside the container will connect in cleartext to HTTP port 80 on the remote server and follow the redirect to the actual webpage using TLS and HTTPS on port 443.
 
 ## Obtaining the Sysdig Trace
 
