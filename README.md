@@ -19,7 +19,7 @@ sudo sysdig proc.name==curl -s 5000 -w docker-curl-https.scap
 ```
 This command will save the captured data into a file named `docker-curl-https.scap`. The `-s 5000` option sets the snaplen to 5000 bytes, which is the maximum amount of data to capture per system call.
 
-## Running curl inside a Docker Container
+## Running `curl` inside a Docker Container
 
 SSH into the remote host from a different terminal:
 ```sh
