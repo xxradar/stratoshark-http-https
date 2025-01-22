@@ -50,4 +50,4 @@ These commands will securely copy the trace files from the remote host to your l
 
 ## Stratoshark
 The `docker-curl-https.scap` can be opened with Stratoshark, available for Mac and Windows.<br> 
-(see https://www.wireshark.org/download/automated/)
+(see https://www.wireshark.org/download/automated/ for downlodad)
