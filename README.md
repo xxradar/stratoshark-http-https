@@ -47,3 +47,6 @@ scp ubuntu@remote-host:~/docker-curl-https.scap ./docker-curl-https.scap
 scp ubuntu@remote-host:~/docker-curl-https.txt ./docker-curl-https.txt
 ```
 These commands will securely copy the trace files from the remote host to your local machine.
+
+## Stratoshark
+The `docker-curl-https.scap` can be opened with Stratoshark, available for Mac and Windows. (see https://www.wireshark.org/download/automated/)
