@@ -4,13 +4,21 @@
   <img src="./images/stratoshark_logo_240.png" alt="Logo trace" title="Logo" />
 </p>
 
-## Prerequisites
+##  Understanding System Calls: The Key to Cloud-Native Security and Observability
+In the rapidly evolving world of cloud-native technologies, understanding the intricacies of system calls is critical. System calls are the fundamental interface between an application and the operating system, dictating how processes interact with system resources. This understanding underpins crucial areas like security, observability, and performance tuning.<br>
+<br>
+This repository introduces Stratoshark, a powerful tool for analyzing HTTP/HTTPS traffic (amongst a lot of other use-cases) at the system call level. By leveraging Sysdig and Stratoshark, we explore how system calls such as connect, sendto, recvfrom, read, and write operate during network communication. The ability to analyze these low-level interactions provides a transparent view into application behavior, helping developers, security practitioners, and system administrators detect anomalies, optimize performance, and ensure secure communications in cloud-native environments. <br>
+<br>
+Whether you're working on improving cloud-native security, debugging complex systems, or enhancing observability, this repository equips you with practical tools and techniques to deepen your understanding of system calls and their impact on your applications. Dive in and unlock new possibilities in system-level analysis!
+<br>
+## Prerequisites to get started
 - Ubuntu 24.04 on AWS
 - Docker 
 - Sysdig CLI 
 ```
 curl -s https://s3.amazonaws.com/download.draios.com/stable/install-sysdig | sudo bash
 ```
+
 ## Obtaining System Call Trace Using Sysdig CLI
 
 First, SSH into the remote host:
@@ -99,10 +107,12 @@ So let's use an adjusted filter.
 evt.type==connect or evt.type==read or evt.type==write
 ```
 ![tls_1 trace](./images/tls_1.png "tls_1 traces")
-Note: File descriptors (FDs) are integer handles used by operating systems to identify open files, sockets, or streams. Their meaning depends on how they are assigned during program execution. When you see fd=1 in write system calls, it means the program is sending output to the terminal (stdout), unless it has been redirected to a file or another stream. fd=6 is not reserved by convention and is dynamically assigned by the operating system when a program opens a file, socket, or other resource, but in this case, it assigned to the socket.
+*Note:* File descriptors (FDs) are integer handles used by operating systems to identify open files, sockets, or streams. Their meaning depends on how they are assigned during program execution. When you see fd=1 in write system calls, it means the program is sending output to the terminal (stdout), unless it has been redirected to a file or another stream. fd=6 is not reserved by convention and is dynamically assigned by the operating system when a program opens a file, socket, or other resource, but in this case, it assigned to the socket.<br>
+
 Right click `line 3100` and select `Follow -> File Descriptor Stream` and Stratoshark will show the encrypted traffic flow (FD=6)
 ![tls_2 trace](./images/tls_2.png "tls_2 traces")
 In a later phase, the output of the `curl` process is displayed on stdio.<br>
 This also happens through the process of writing to File Descriptor (FD=1).
+
 Right click `line 3150` and select `Follow -> File Descriptor Stream` and Stratoshark will show what is printed on the console
 ![tls_3 trace](./images/tls_3.png "tls_3 traces")
