@@ -92,14 +92,16 @@ Note: You can so a similar exercise trying the inspect the DNS traffic, but it l
 But you can easily spot the `connect` calls.
 
 ### Applying a filter (HTTPS part)
-`write`/`read` system calls are seen because HTTPS uses TLS/SSL encryption, which involves additional layers of abstraction. When using libraries like libssl and libcrypto for encryption,  the application writes the data to the TLS library, which encrypts it before sending it over the socket. <br>
-Similarly, received data is first decrypted by the library and then read by the application.<br>
-The encryption/decryption process hides the raw socket-level `sendto`/`recvfrom` calls from the application, and instead, you see `read`/`write`.<br>
+`write`/`read` system calls are seen because HTTPS uses TLS/SSL encryption, which involves additional layers of abstraction. When using libraries like libssl and libcrypto for encryption,  the application writes the data to the TLS library, which encrypts it before sending it over the socket. Similarly, received data is first decrypted by the library and then read by the application.  The encryption/decryption process hides the raw socket-level `sendto`/`recvfrom` calls from the application, and instead, you see `read`/`write`.<br>
 
 So let's use an adjusted filter.
 ```
-evt.type==connect or evt.type==read or evt.type=write
+evt.type==connect or evt.type==read or evt.type==write
 ```
 ![tls_1 trace](./images/tls_1.png "tls_1 traces")
+Right click `line 3100` and select `Follow -> File Descriptor Stream` and Stratoshark will show the encrypted traffic flowc(FD=6)
 ![tls_2 trace](./images/tls_2.png "tls_2 traces")
+In a later phase, the output of the `curl` process is displayed on stdio.<br>
+This also happens through the process of writing to File Descriptorc(FD=1).
+Right click `line 3150` and select `Follow -> File Descriptor Stream` and Stratoshark will show what is printed on the console
 ![tls_3 trace](./images/tls_3.png "tls_3 traces")
