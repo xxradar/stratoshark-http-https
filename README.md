@@ -1,6 +1,6 @@
 # Analyzing HTTP/HTTPS Traffic with Stratoshark
 ## Prerequisites
-- Ubuntu
+- Ubuntu 24.04 on AWS
 - Docker 
 - Sysdig CLI 
 ```
@@ -51,3 +51,17 @@ These commands will securely copy the trace files from the remote host to your l
 ## Stratoshark
 The `docker-curl-https.scap` can be opened with Stratoshark, available for Mac and Windows.<br> 
 (see https://www.wireshark.org/download/automated/ for downlodad)
+
+From the UI open `docker-curl-https.scap`
+![Unfiltered trace](./images/unfiltered_1.png "Title")
+
+### Applying a filter
+```
+evt.type==connect or evt.type==recvfrom
+```
+
+
+For HTTPS, this is slightly different
+```
+evt.type==connect or evt.type==read or evt.type=write
+```
