@@ -52,13 +52,17 @@ scp ubuntu@remote-host:~/docker-curl-https.scap ./docker-curl-https.scap
 scp ubuntu@remote-host:~/docker-curl-https.txt ./docker-curl-https.txt
 ```
 These commands will securely copy the trace files from the remote host to your local machine.
+If you want to follow along with the examples in the next section, you can find the trace in this repo in the traces directory.
 
 ## Stratoshark
 The `docker-curl-https.scap` can be opened with Stratoshark, available for Mac and Windows.<br> 
 (see https://www.wireshark.org/download/automated/ for downlodad)
 
+
 From the UI open `docker-curl-https.scap`
 ![Unfiltered trace](./images/unfiltered_1.png "Unfiltered traces")
+
+
 
 ### Applying a filter
 As you can see there are a lot of entries, so let's filter in popular `wireshark-style` and nail it down to what we are looking for.
