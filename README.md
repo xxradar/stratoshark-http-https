@@ -99,9 +99,10 @@ So let's use an adjusted filter.
 evt.type==connect or evt.type==read or evt.type==write
 ```
 ![tls_1 trace](./images/tls_1.png "tls_1 traces")
-Right click `line 3100` and select `Follow -> File Descriptor Stream` and Stratoshark will show the encrypted traffic flowc(FD=6)
+Note: File descriptors (FDs) are integer handles used by operating systems to identify open files, sockets, or streams. Their meaning depends on how they are assigned during program execution. When you see fd=1 in write system calls, it means the program is sending output to the terminal (stdout), unless it has been redirected to a file or another stream. fd=6 is not reserved by convention and is dynamically assigned by the operating system when a program opens a file, socket, or other resource, but in this case, it assigned to the socket.
+Right click `line 3100` and select `Follow -> File Descriptor Stream` and Stratoshark will show the encrypted traffic flow (FD=6)
 ![tls_2 trace](./images/tls_2.png "tls_2 traces")
 In a later phase, the output of the `curl` process is displayed on stdio.<br>
-This also happens through the process of writing to File Descriptorc(FD=1).
+This also happens through the process of writing to File Descriptor (FD=1).
 Right click `line 3150` and select `Follow -> File Descriptor Stream` and Stratoshark will show what is printed on the console
 ![tls_3 trace](./images/tls_3.png "tls_3 traces")
