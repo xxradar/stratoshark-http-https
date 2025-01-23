@@ -117,3 +117,7 @@ This also happens through the process of writing to File Descriptor (FD=1).
 
 Right click `line 3150` and select `Follow -> File Descriptor Stream` and Stratoshark will show what is printed on the console
 ![tls_3 trace](./images/tls_3.png "tls_3 traces")
+
+## Conclusion
+
+Understanding and analyzing system calls is a vital skill for anyone working in cloud-native environments, especially in areas like security and observability. By using tools like Sysdig and Stratoshark, you gain the ability to inspect low-level interactions that power applications and containers. This insight can directly contribute to use cases such as crafting Falco rules for runtime security, generating tailored seccomp profiles to minimize attack surfaces, and debugging complex system behaviors. Armed with these techniques, you are better equipped to build secure, efficient, and observable cloud-native applications.
