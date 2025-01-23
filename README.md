@@ -1,5 +1,7 @@
 # Analyzing HTTP/HTTPS Traffic with Stratoshark
+<p align="center">
 ![Logo trace](./images/stratoshark_logo_240.png "Logo")
+</p>
 
 ## Prerequisites
 - Ubuntu 24.04 on AWS
