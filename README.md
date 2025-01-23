@@ -1,4 +1,6 @@
 # Analyzing HTTP/HTTPS Traffic with Stratoshark
+![Logo trace](./images/stratoshark_logo_240.png "Logo")
+
 ## Prerequisites
 - Ubuntu 24.04 on AWS
 - Docker 
