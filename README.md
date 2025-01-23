@@ -85,12 +85,18 @@ There is an easier way to track this all down. Select `line 2510`, click right a
 The filter is updated accordingly.
 ![follow_stream_1 trace](./images/follow_stream_1.png "Filtered traces")
 
+`sendto`/`recvfrom` system calls are typically used in raw socket communication, where data is sent or received directly over the network without additional abstractions. The `connect` call is used to initiate a connection.<br>
+We can easily see and observe the traffic since it is in clear-text.
 
-
+Note: You can so a similar exercise trying the inspect the DNS traffic, but it less readable because of the payload format of DNS. <br>
+But you can easily spot the `connect` calls.
 
 ### Applying a filter (HTTPS part)
+`write`/`read` system calls are seen because HTTPS uses TLS/SSL encryption, which involves additional layers of abstraction. When using libraries like libssl and libcrypto for encryption,  the application writes the data to the TLS library, which encrypts it before sending it over the socket. <br>
+Similarly, received data is first decrypted by the library and then read by the application.<br>
+The encryption/decryption process hides the raw socket-level `sendto`/`recvfrom` calls from the application, and instead, you see `read`/`write`.<br>
 
-For HTTPS, this is slightly different
+So let's use an adjusted filter.
 ```
 evt.type==connect or evt.type==read or evt.type=write
 ```
