@@ -11,6 +11,7 @@ This repository introduces Stratoshark, a powerful tool for analyzing HTTP/HTTPS
 <br>
 Whether you're working on improving cloud-native security, debugging complex systems, or enhancing observability, this repository equips you with practical tools and techniques to deepen your understanding of system calls and their impact on your applications. Dive in and unlock new possibilities in system-level analysis!
 <br>
+
 ## Prerequisites to get started
 - Ubuntu 24.04 on AWS
 - Docker 
