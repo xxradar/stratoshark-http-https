@@ -53,12 +53,15 @@ The `docker-curl-https.scap` can be opened with Stratoshark, available for Mac a
 (see https://www.wireshark.org/download/automated/ for downlodad)
 
 From the UI open `docker-curl-https.scap`
-![Unfiltered trace](./images/unfiltered_1.png "Title")
+![Unfiltered trace](./images/unfiltered_1.png "Unfiltered traces")
 
 ### Applying a filter
+As you can see there are a lot of entries, so let's file `wireshark-style` and nail it down to what we are looking for.
+Apply following filter
 ```
 evt.type==connect or evt.type==recvfrom
 ```
+![filtered trace](./images/filtered_1.png "Filtered traces")
 
 
 For HTTPS, this is slightly different
