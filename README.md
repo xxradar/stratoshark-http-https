@@ -51,8 +51,8 @@ To transfer the trace files to your local machine, use the following `scp` comma
 scp ubuntu@remote-host:~/docker-curl-https.scap ./docker-curl-https.scap
 scp ubuntu@remote-host:~/docker-curl-https.txt ./docker-curl-https.txt
 ```
-These commands will securely copy the trace files from the remote host to your local machine.
-If you want to follow along with the examples in the next section, you can find the trace in this repo in the traces directory.
+These commands will securely copy the trace files from the remote host to your local machine.<br>
+If you want to follow along with the examples in the next section, you can find the trace in this repo in the `traces` directory.
 
 ## Stratoshark
 The `docker-curl-https.scap` can be opened with Stratoshark, available for Mac and Windows.<br> 
@@ -68,11 +68,25 @@ From the UI open `docker-curl-https.scap`
 As you can see there are a lot of entries, so let's filter in popular `wireshark-style` and nail it down to what we are looking for.
 Apply following filter
 ```
-evt.type==connect or evt.type==recvfrom
+evt.type==connect or evt.type==recvfrom or evt.type==sendto
 ```
 ![filtered trace](./images/filtered.png "Filtered traces")
+
+If we look carefully in `line 2395` we find the request being send.
+```
+2395 21:07:53.946614329 0 curl (104155) < sendto res=81 data=GET / HTTP/1.1..Host: www.radarhack.com..User-Agent: curl/7.81.0..Accept: */*...
+```
+In `line 2510` we can find the response
+```
+2510 21:07:53.972731198 0 curl (104155) < recvfrom res=748 data=HTTP/1.1 301 Moved Permanently..Date: Wed, 23 Jan 2025 10:06 GMT..Content-...
+```
+There is an easier way to track this all down. Select `line 2510`, click right and select Follow -> File Descriptor Stream and Stratoshark will do the hard work for you.
 ![follow_stream_1 trace](./images/follow_stream_1.png "Filtered traces")
+The filter is updated accordingly.
 ![follow_stream_2 trace](./images/follow_stream_2.png "Filtered traces")
+
+
+
 
 For HTTPS, this is slightly different
 ```
