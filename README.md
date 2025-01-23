@@ -61,7 +61,7 @@ Apply following filter
 ```
 evt.type==connect or evt.type==recvfrom
 ```
-![filtered trace](./images/filtered_1.png "Filtered traces")
+![filtered trace](./images/filtered.png "Filtered traces")
 
 
 For HTTPS, this is slightly different
