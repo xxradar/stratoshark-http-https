@@ -64,7 +64,7 @@ From the UI open `docker-curl-https.scap`
 
 
 
-### Applying a filter
+### Applying a filter (HTTP part)
 As you can see there are a lot of entries, so let's filter in popular `wireshark-style` and nail it down to what we are looking for.
 Apply following filter
 ```
@@ -80,13 +80,15 @@ In `line 2510` we can find the response
 ```
 2510 21:07:53.972731198 0 curl (104155) < recvfrom res=748 data=HTTP/1.1 301 Moved Permanently..Date: Wed, 23 Jan 2025 10:06 GMT..Content-...
 ```
-There is an easier way to track this all down. Select `line 2510`, click right and select Follow -> File Descriptor Stream and Stratoshark will do the hard work for you.
-![follow_stream_1 trace](./images/follow_stream_1.png "Filtered traces")
-The filter is updated accordingly.
+There is an easier way to track this all down. Select `line 2510`, click right and select `Follow -> File Descriptor Stream` and Stratoshark will do the hard work for you.
 ![follow_stream_2 trace](./images/follow_stream_2.png "Filtered traces")
+The filter is updated accordingly.
+![follow_stream_1 trace](./images/follow_stream_1.png "Filtered traces")
 
 
 
+
+### Applying a filter (HTTPS part)
 
 For HTTPS, this is slightly different
 ```
