@@ -1,6 +1,7 @@
 # Analyzing HTTP/HTTPS Traffic with Stratoshark
+
 <p align="center">
-![Logo trace](./images/stratoshark_logo_240.png "Logo")
+  <img src="./images/stratoshark_logo_240.png" alt="Logo trace" title="Logo" />
 </p>
 
 ## Prerequisites
